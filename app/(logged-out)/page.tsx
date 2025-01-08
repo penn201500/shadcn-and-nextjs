@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { PersonStandingIcon } from "lucide-react"
+import Link from "next/link"
 
 export default function LandingPage() {
     return (
@@ -13,9 +14,15 @@ export default function LandingPage() {
             </h1>
             <p>The best dashboard to manage customer support</p>
             <div className="flex items-center gap-2 mt-4">
-                <Button>Log In</Button>
+                <Button asChild>
+                    <Link href="/login">Log In</Link>
+                </Button>
                 <small>or</small>
-                <Button variant={"outline"}>Sign Up</Button>
+                <Button
+                    variant={"outline"}
+                    asChild>
+                    <Link href="/sign-up">Sign Up</Link>
+                </Button>
             </div>
         </>
     )
