@@ -14,7 +14,8 @@ export default function LandingPage() {
             <p>The best dashboard to manage customer support</p>
             <div className="flex items-center gap-2 mt-4">
                 <Button>Log In</Button>
-                <Button>Sign Up</Button>
+                <small>or</small>
+                <Button variant={"outline"}>Sign Up</Button>
             </div>
         </>
     )
