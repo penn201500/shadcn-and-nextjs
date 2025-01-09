@@ -41,7 +41,6 @@ export default function LoginPage() {
             email: "",
             password: "",
         },
-        shouldUseNativeValidation: true,
     })
 
     return (
