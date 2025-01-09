@@ -9,7 +9,7 @@ export default function LandingPage() {
                 <PersonStandingIcon
                     size={45}
                     className="text-pink-500"
-                />{" "}
+                />
                 Shadcn UI
             </h1>
             <p>The best dashboard to manage customer support</p>
