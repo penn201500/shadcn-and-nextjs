@@ -68,7 +68,27 @@ export default function LoginPage() {
                                             />
                                         </FormControl>
                                         <FormDescription>
-                                            This is your email address.
+                                            <small>This is your email address.</small>
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="Password"
+                                                type="password"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormDescription>
+                                            <small>This is your password.</small>
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>
