@@ -9,10 +9,41 @@ import {
     CardContent,
     CardFooter,
 } from "@/components/ui/card"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { PersonStandingIcon } from "lucide-react"
 import Link from "next/link"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+
+const formSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(4),
+})
+
+function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(data)
+}
 
 export default function LoginPage() {
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+        shouldUseNativeValidation: true,
+    })
+
     return (
         <>
             <PersonStandingIcon size={50} />
@@ -22,7 +53,31 @@ export default function LoginPage() {
                     <CardDescription>Login to your account</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>Card Content</p>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="Email"
+                                                type="email"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormDescription>
+                                            This is your email address.
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit">Submit</Button>
+                        </form>
+                    </Form>
                 </CardContent>
                 <CardFooter className="justify-between">
                     <small>Don&apos;t have an account?</small>
