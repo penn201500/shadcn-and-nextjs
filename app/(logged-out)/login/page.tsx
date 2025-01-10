@@ -53,7 +53,7 @@ export default function LoginPage() {
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -94,7 +94,7 @@ export default function LoginPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit">Login</Button>
                         </form>
                     </Form>
                 </CardContent>
