@@ -53,7 +53,9 @@ export default function LoginPage() {
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                        <form
+                            onSubmit={form.handleSubmit(onSubmit)}
+                            className="flex flex-col gap-4">
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -64,6 +66,7 @@ export default function LoginPage() {
                                             <Input
                                                 placeholder="Email"
                                                 type="email"
+                                                autoComplete="username"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -84,6 +87,7 @@ export default function LoginPage() {
                                             <Input
                                                 placeholder="Password"
                                                 type="password"
+                                                autoComplete="username"
                                                 {...field}
                                             />
                                         </FormControl>
