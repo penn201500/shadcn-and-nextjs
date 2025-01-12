@@ -32,12 +32,32 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-const formSchema = z.object({
-    email: z.string().email(),
-    accountType: z.enum(["personal", "company"]),
-    companyName: z.string().optional(),
-    numberOfEmployees: z.coerce.number().optional(),
-})
+const formSchema = z
+    .object({
+        email: z.string().email(),
+        accountType: z.enum(["personal", "company"]),
+        companyName: z.string().optional(),
+        numberOfEmployees: z.coerce.number().optional(),
+    })
+    .superRefine((data, ctx) => {
+        if (data.accountType === "company" && !data.companyName) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                path: ["companyName"],
+                message: "Company name is required",
+            })
+        }
+        if (
+            data.accountType === "company" &&
+            (!data.numberOfEmployees || data.numberOfEmployees < 1)
+        ) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                path: ["numberOfEmployees"],
+                message: "Valid number of employees is required",
+            })
+        }
+    })
 
 function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data)
@@ -48,8 +68,13 @@ export default function SignUpPage() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
+            accountType: "personal",
+            companyName: "",
+            numberOfEmployees: undefined,
         },
     })
+
+    const accountType = form.watch("accountType")
 
     return (
         <>
@@ -87,7 +112,10 @@ export default function SignUpPage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Account type</FormLabel>
-                                        <Select onValueChange={field.onChange}>
+                                        <Select
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            value={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Select an account type" />
@@ -103,6 +131,47 @@ export default function SignUpPage() {
                                     </FormItem>
                                 )}
                             />
+                            {accountType === "company" && (
+                                <>
+                                    <FormField
+                                        control={form.control}
+                                        name="companyName"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Company Name</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="Company Name"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="numberOfEmployees"
+                                        render={({ field: { onChange, value, ...field } }) => (
+                                            <FormItem>
+                                                <FormLabel>Number of Employees</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="Number of Employees"
+                                                        value={value ?? ""} // Handle undefined case
+                                                        onChange={e => {
+                                                            const val = e.target.value
+                                                            onChange(val ? Number(val) : undefined)
+                                                        }}
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </>
+                            )}
 
                             <Button type="submit">Sign Up</Button>
                         </form>
