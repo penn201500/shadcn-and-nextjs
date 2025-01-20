@@ -207,6 +207,8 @@ export default function SignUpPage() {
                                                     defaultMonth={field.value}
                                                     selected={field.value}
                                                     onSelect={field.onChange}
+                                                    fixedWeeks
+                                                    weekStartsOn={1} // Monday
                                                 />
                                             </PopoverContent>
                                         </Popover>
