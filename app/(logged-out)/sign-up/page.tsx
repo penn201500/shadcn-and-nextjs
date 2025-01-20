@@ -34,6 +34,9 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+const dobFromDate = new Date()
+dobFromDate.setFullYear(dobFromDate.getFullYear() - 120)
+
 const formSchema = z
     .object({
         email: z.string().email(),
@@ -209,6 +212,8 @@ export default function SignUpPage() {
                                                     onSelect={field.onChange}
                                                     fixedWeeks
                                                     weekStartsOn={1} // Monday
+                                                    fromDate={dobFromDate}
+                                                    toDate={new Date()}
                                                 />
                                             </PopoverContent>
                                         </Popover>
