@@ -201,7 +201,7 @@ export default function SignUpPage() {
                                                     </Button>
                                                 </FormControl>
                                             </PopoverTrigger>
-                                            <PopoverContent>
+                                            <PopoverContent align="start">
                                                 <Calendar
                                                     mode="single"
                                                     defaultMonth={field.value}
