@@ -19,6 +19,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Popover, PopoverTrigger } from "@/components/ui/popover"
 import {
     Select,
     SelectContent,
@@ -27,7 +28,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { PersonStandingIcon } from "lucide-react"
+import { Calendar, PersonStandingIcon } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -182,6 +183,29 @@ export default function SignUpPage() {
                                 </>
                             )}
 
+                            <FormField
+                                control={form.control}
+                                name="dob"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col pt-2">
+                                        <FormLabel>Date of Birth</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        className="normal-case flex justify-between pr-1">
+                                                        <span>Pick a Date</span>
+                                                        <Calendar></Calendar>
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                        </Popover>
+                                        <FormDescription></FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <Button type="submit">Sign Up</Button>
                         </form>
                     </Form>
