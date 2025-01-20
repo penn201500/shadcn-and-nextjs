@@ -200,7 +200,11 @@ export default function SignUpPage() {
                                                     <Button
                                                         variant="outline"
                                                         className="normal-case flex justify-between pr-1">
-                                                        <span>Pick a Date</span>
+                                                        {field.value ? (
+                                                            format(field.value, "PPP")
+                                                        ) : (
+                                                            <span>Pick a Date</span>
+                                                        )}
                                                         <CalendarIcon />
                                                     </Button>
                                                 </FormControl>
