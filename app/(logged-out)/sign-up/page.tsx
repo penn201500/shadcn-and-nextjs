@@ -214,6 +214,9 @@ export default function SignUpPage() {
                                                     weekStartsOn={1} // Monday
                                                     fromDate={dobFromDate}
                                                     toDate={new Date()}
+                                                    // disabled={(date)=>{
+                                                    //     return date.getDay() === 0 || date.getDay() === 6
+                                                    // }}
                                                 />
                                             </PopoverContent>
                                         </Popover>
