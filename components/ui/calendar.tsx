@@ -63,7 +63,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
                     />
                 ),
                 Dropdown: dropdownProps => {
-                    const { currentMonth } = useNavigation()
+                    const { currentMonth, goToMonth } = useNavigation()
                     const { fromYear, fromMonth, fromDate, toYear, toMonth, toDate } =
                         useDayPicker()
                     let values: { value: string; label: string }[] = []
@@ -87,9 +87,22 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
                             )
                         }
                     }
-                    const caption = format(currentMonth, dropdownProps.name === "months" ? "MMMM" : "yyyy")
+                    const caption = format(
+                        currentMonth,
+                        dropdownProps.name === "months" ? "MMMM" : "yyyy"
+                    )
                     return (
-                        <Select>
+                        <Select
+                            value={dropdownProps.value?.toString()}
+                            onValueChange={value => {
+                                const newDate = new Date(currentMonth)
+                                if (dropdownProps.name === "months") {
+                                    newDate.setMonth(Number(value))
+                                } else if (dropdownProps.name === "years") {
+                                    newDate.setFullYear(Number(value))
+                                }
+                                goToMonth(newDate)
+                            }}>
                             <SelectTrigger>{caption}</SelectTrigger>
                             <SelectContent>
                                 {values.map(option => (
