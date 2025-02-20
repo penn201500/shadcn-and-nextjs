@@ -60,8 +60,17 @@ const formSchema = z
             .refine(password => {
                 return /^(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/.test(password) // Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
             }, "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."),
+        passwordConfirm: z.string(),
     })
     .superRefine((data, ctx) => {
+        if (data.password !== data.passwordConfirm) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                path: ["passwordConfirm"],
+                message: "Passwords do not match",
+            })
+        }
+
         if (data.accountType === "company" && !data.companyName) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
@@ -252,6 +261,28 @@ export default function SignUpPage() {
                                 render={({ field: { onChange, value, ...field } }) => (
                                     <FormItem>
                                         <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="......"
+                                                type="password"
+                                                value={value ?? ""} // Handle undefined case
+                                                onChange={e => {
+                                                    const val = e.target.value
+                                                    onChange(val)
+                                                }}
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="passwordConfirm"
+                                render={({ field: { onChange, value, ...field } }) => (
+                                    <FormItem>
+                                        <FormLabel>Confirm password</FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder="......"
