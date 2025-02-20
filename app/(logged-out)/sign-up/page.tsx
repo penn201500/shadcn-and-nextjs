@@ -177,7 +177,13 @@ export default function SignUpPage() {
                                                         value={value ?? ""} // Handle undefined case
                                                         onChange={e => {
                                                             const val = e.target.value
-                                                            onChange(val ? Number(val) : undefined)
+                                                            onChange(
+                                                                val === ""
+                                                                    ? undefined
+                                                                    : isNaN(Number(val))
+                                                                    ? undefined
+                                                                    : Number(val)
+                                                            )
                                                         }}
                                                         {...field}
                                                     />
@@ -237,13 +243,18 @@ export default function SignUpPage() {
                             <FormField
                                 control={form.control}
                                 name="password"
-                                render={({ field }) => (
+                                render={({ field: { onChange, value, ...field } }) => (
                                     <FormItem>
                                         <FormLabel>Password</FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder="......"
                                                 type="password"
+                                                value={value ?? ""} // Handle undefined case
+                                                onChange={e => {
+                                                    const val = e.target.value
+                                                    onChange(val)
+                                                }}
                                                 {...field}
                                             />
                                         </FormControl>
