@@ -53,7 +53,13 @@ const formSchema = z
             )
             return date <= eighteenYearsAgo
         }, "You must be at least 18 years old to use this service."),
-        password: z.string().min(6, "Password must contain at least 6 characters.").max(30),
+        password: z
+            .string()
+            .min(6, "Password must contain at least 6 characters.")
+            .max(30)
+            .refine(password => {
+                return /^(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/.test(password) // Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
+            }, "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."),
     })
     .superRefine((data, ctx) => {
         if (data.accountType === "company" && !data.companyName) {
