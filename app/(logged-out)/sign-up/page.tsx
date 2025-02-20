@@ -53,6 +53,7 @@ const formSchema = z
             )
             return date <= eighteenYearsAgo
         }, "You must be at least 18 years old to use this service."),
+        password: z.string().min(6, "Password must contain at least 6 characters.").max(30),
     })
     .superRefine((data, ctx) => {
         if (data.accountType === "company" && !data.companyName) {
@@ -229,6 +230,23 @@ export default function SignUpPage() {
                                             </PopoverContent>
                                         </Popover>
                                         <FormDescription></FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="......"
+                                                type="password"
+                                                {...field}
+                                            />
+                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
