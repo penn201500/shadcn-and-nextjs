@@ -38,39 +38,13 @@ import * as z from "zod"
 const dobFromDate = new Date()
 dobFromDate.setFullYear(dobFromDate.getFullYear() - 120)
 
-const formSchema = z
+const accountSchema = z
     .object({
-        email: z.string().email(),
         accountType: z.enum(["personal", "company"]),
         companyName: z.string().optional(),
         numberOfEmployees: z.coerce.number().optional(),
-        dob: z.date().refine(date => {
-            const today = new Date()
-            const eighteenYearsAgo = new Date(
-                today.getFullYear() - 18,
-                today.getMonth(),
-                today.getDate()
-            )
-            return date <= eighteenYearsAgo
-        }, "You must be at least 18 years old to use this service."),
-        password: z
-            .string()
-            .min(6, "Password must contain at least 6 characters.")
-            .max(30)
-            .refine(password => {
-                return /^(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/.test(password) // Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
-            }, "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."),
-        passwordConfirm: z.string(),
     })
     .superRefine((data, ctx) => {
-        if (data.password !== data.passwordConfirm) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                path: ["passwordConfirm"],
-                message: "Passwords do not match",
-            })
-        }
-
         if (data.accountType === "company" && !data.companyName) {
             ctx.addIssue({
                 code: z.ZodIssueCode.custom,
@@ -89,6 +63,42 @@ const formSchema = z
             })
         }
     })
+
+const passwordSchema = z
+    .object({
+        password: z
+            .string()
+            .min(6, "Password must contain at least 6 characters.")
+            .max(30)
+            .refine(password => {
+                return /^(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/.test(password) // Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character
+            }, "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character."),
+        passwordConfirm: z.string(),
+    })
+    .superRefine((data, ctx) => {
+        if (data.password !== data.passwordConfirm) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                path: ["passwordConfirm"],
+                message: "Passwords do not match",
+            })
+        }
+    })
+
+const baseSchema = z.object({
+    email: z.string().email(),
+    dob: z.date().refine(date => {
+        const today = new Date()
+        const eighteenYearsAgo = new Date(
+            today.getFullYear() - 18,
+            today.getMonth(),
+            today.getDate()
+        )
+        return date <= eighteenYearsAgo
+    }, "You must be at least 18 years old to use this service."),
+})
+
+const formSchema = baseSchema.and(passwordSchema).and(accountSchema)
 
 function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data)
