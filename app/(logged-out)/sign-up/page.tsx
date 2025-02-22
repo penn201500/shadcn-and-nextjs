@@ -36,6 +36,7 @@ import { CalendarIcon, PersonStandingIcon } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { useRouter } from "next/navigation"
 
 const dobFromDate = new Date()
 dobFromDate.setFullYear(dobFromDate.getFullYear() - 120)
@@ -105,11 +106,8 @@ const baseSchema = z.object({
 
 const formSchema = baseSchema.and(passwordSchema).and(accountSchema)
 
-function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data)
-}
-
 export default function SignUpPage() {
+    const router = useRouter()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -119,6 +117,11 @@ export default function SignUpPage() {
             numberOfEmployees: undefined,
         },
     })
+
+    function onSubmit(data: z.infer<typeof formSchema>) {
+        console.log(data)
+        router.push("/dashboard")
+    }
 
     const accountType = form.watch("accountType")
 
