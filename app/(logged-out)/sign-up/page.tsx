@@ -275,7 +275,6 @@ export default function SignUpPage() {
                                         <FormControl>
                                             <PasswordInput
                                                 placeholder="......"
-                                                type="password"
                                                 value={value ?? ""} // Handle undefined case
                                                 onChange={e => {
                                                     const val = e.target.value
@@ -295,9 +294,8 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel>Confirm password</FormLabel>
                                         <FormControl>
-                                            <Input
+                                            <PasswordInput
                                                 placeholder="......"
-                                                type="password"
                                                 value={value ?? ""} // Handle undefined case
                                                 onChange={e => {
                                                     const val = e.target.value
