@@ -19,6 +19,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { PersonStandingIcon } from "lucide-react"
 import Link from "next/link"
@@ -84,9 +85,8 @@ export default function LoginPage() {
                                     <FormItem>
                                         <FormLabel>Password</FormLabel>
                                         <FormControl>
-                                            <Input
+                                            <PasswordInput
                                                 placeholder="Password"
-                                                type="password"
                                                 autoComplete="username"
                                                 {...field}
                                             />
