@@ -1,4 +1,4 @@
-import { Group, Home, Settings, User } from "lucide-react"
+import { Group, Home, Settings, User, Users } from "lucide-react"
 import MenuTitle from "./menu-title"
 import MenuItem from "./menu-item"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -21,6 +21,11 @@ export default function MainMenu() {
                 <MenuItem href="/dashboard/teams">
                     <span className="flex items-center">
                         <Group className="ml-1 mr-4" /> Teams
+                    </span>
+                </MenuItem>
+                <MenuItem href="/dashboard/employees">
+                    <span className="flex items-center">
+                        <Users className="ml-1 mr-4" /> Employees
                     </span>
                 </MenuItem>
                 <MenuItem href="/dashboard/account">
