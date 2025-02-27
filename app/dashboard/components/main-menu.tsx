@@ -1,14 +1,17 @@
 import { Group, Home, Settings, User } from "lucide-react"
 import MenuTitle from "./menu-title"
 import MenuItem from "./menu-item"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import Link from "next/link"
+import LightDarkToggle from "@/components/ui/light-dark-toggle"
 
 export default function MainMenu() {
     return (
-        <div className="bg-muted overflow-auto p-4">
+        <div className="bg-muted overflow-auto p-4 flex flex-col">
             <div className="border-b dark:border-b-black border-b-zinc-300 pb-4">
                 <MenuTitle />
             </div>
-            <div className="mt-2">
+            <div className="mt-2 grow">
                 <MenuItem href="/dashboard">
                     <span className="flex items-center">
                         <Home className="ml-1 mr-4" />
@@ -30,6 +33,13 @@ export default function MainMenu() {
                         <Settings className="ml-1 mr-4" /> Settings
                     </span>
                 </MenuItem>
+            </div>
+            <div className="flex gap-2 items-center">
+                <Avatar>
+                    <AvatarFallback className="bg-pink-200 dark:bg-pink-800">Sh</AvatarFallback>
+                </Avatar>
+                <Link href="/" className="hover:underline">Logout</Link>
+                <LightDarkToggle className="ml-auto"/>
             </div>
         </div>
     )
