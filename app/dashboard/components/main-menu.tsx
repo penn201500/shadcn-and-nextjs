@@ -7,10 +7,10 @@ import LightDarkToggle from "@/components/ui/light-dark-toggle"
 
 export default function MainMenu() {
     return (
-        <div className="bg-muted overflow-auto p-4 flex flex-col">
-            <div className="border-b dark:border-b-black border-b-zinc-300 pb-4">
+        <nav className="bg-muted overflow-auto p-4 flex flex-col">
+            <header className="border-b dark:border-b-black border-b-zinc-300 pb-4">
                 <MenuTitle />
-            </div>
+            </header>
             <div className="mt-2 grow">
                 <MenuItem href="/dashboard">
                     <span className="flex items-center">
@@ -39,13 +39,13 @@ export default function MainMenu() {
                     </span>
                 </MenuItem>
             </div>
-            <div className="flex gap-2 items-center">
+            <footer className="flex gap-2 items-center">
                 <Avatar>
                     <AvatarFallback className="bg-pink-200 dark:bg-pink-800">Sh</AvatarFallback>
                 </Avatar>
                 <Link href="/" className="hover:underline">Logout</Link>
                 <LightDarkToggle className="ml-auto"/>
-            </div>
-        </div>
+            </footer>
+        </nav>
     )
 }
