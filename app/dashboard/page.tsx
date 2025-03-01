@@ -1,14 +1,17 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { TabsContent } from "@radix-ui/react-tabs"
+import EmployeesStats from "./components/employees-stats"
 
 export default function DashboardPage() {
     return (
         <Tabs>
-            <TabsList>
+            <TabsList className="mb-4">
                 <TabsTrigger value="employees">Employees stats</TabsTrigger>
                 <TabsTrigger value="teams">Teams stats</TabsTrigger>
             </TabsList>
-            <TabsContent value="employees">Employees stats</TabsContent>
+            <TabsContent value="employees">
+                <EmployeesStats />
+            </TabsContent>
             <TabsContent value="teams">Teams stats</TabsContent>
         </Tabs>
     )
