@@ -15,10 +15,13 @@ export default function EmployeesStats() {
                         <User size={24} />
                         <div className="text-5xl font-bold">100</div>
                     </div>
-                    <div>2</div>
-                    <Button size="xs" asChild>
-                        <Link href="/dashboard/employees">View all</Link>
-                    </Button>
+                    <div>
+                        <Button
+                            size="xs"
+                            asChild>
+                            <Link href="/dashboard/employees">View all</Link>
+                        </Button>
+                    </div>
                 </CardContent>
             </Card>
             <Card>
