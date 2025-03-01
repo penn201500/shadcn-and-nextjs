@@ -1,13 +1,17 @@
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
     AlertTriangleIcon,
     BadgeCheckIcon,
+    PartyPopperIcon,
     User,
     UserCheck2Icon,
     UserRoundXIcon,
 } from "lucide-react"
 import Link from "next/link"
+import cm from "@/public/images/cm.jpg"
+import Image from "next/image"
 
 export default function EmployeesStats() {
     const totalEmployees = 100
@@ -58,10 +62,27 @@ export default function EmployeesStats() {
                     )}
                 </CardFooter>
             </Card>
-            <Card>
+            <Card className="flex flex-col">
                 <CardHeader>
                     <CardTitle className="text-base">Employee of the month</CardTitle>
                 </CardHeader>
+                <CardContent className="flex justify-between items-center">
+                    <Avatar>
+                        <Image
+                            src={cm}
+                            alt="Employee of the month avatar"
+                        />
+                        <AvatarFallback>CM</AvatarFallback>
+                    </Avatar>
+                    <div className="text-2xsl font-bold">CM is here!</div>
+                </CardContent>
+                <CardFooter className="flex gap-2 items-center text-xs text-muted-foreground mt-auto">
+                    <PartyPopperIcon
+                        size={16}
+                        className="text-pink-500"
+                    />
+                    <span className="text-xs">Congratulations to CM</span>
+                </CardFooter>
             </Card>
         </div>
     )
