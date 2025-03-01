@@ -16,7 +16,7 @@ export default function EmployeesStats() {
                         <div className="text-5xl font-bold">100</div>
                     </div>
                     <div>2</div>
-                    <Button asChild>
+                    <Button size="xs" asChild>
                         <Link href="/dashboard/employees">View all</Link>
                     </Button>
                 </CardContent>
