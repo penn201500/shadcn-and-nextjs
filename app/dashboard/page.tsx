@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { TabsContent } from "@radix-ui/react-tabs"
-import EmployeesStats from "./components/employees-stats"
+import EmployeesStats from "./components/employees/employees-stats"
 
 export default function DashboardPage() {
     return (
