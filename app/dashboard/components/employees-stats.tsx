@@ -17,7 +17,7 @@ export default function EmployeesStats() {
                     </div>
                     <div>2</div>
                     <Button asChild>
-                        <Link href="/employees">View all</Link>
+                        <Link href="/dashboard/employees">View all</Link>
                     </Button>
                 </CardContent>
             </Card>
