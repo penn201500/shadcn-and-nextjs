@@ -1,9 +1,19 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { BadgeCheckIcon, User, UserCheck2Icon } from "lucide-react"
+import {
+    AlertTriangleIcon,
+    BadgeCheckIcon,
+    User,
+    UserCheck2Icon,
+    UserRoundXIcon,
+} from "lucide-react"
 import Link from "next/link"
 
 export default function EmployeesStats() {
+    const totalEmployees = 100
+    const employeesPresent = 60
+    const employeesPresentPercentage = (employeesPresent / totalEmployees) * 100
+
     return (
         <div className="grid lg:grid-cols-3 gap-4">
             <Card>
@@ -13,7 +23,7 @@ export default function EmployeesStats() {
                 <CardContent className="flex justify-between items-center">
                     <div className="flex gap-2">
                         <User size={24} />
-                        <div className="text-5xl font-bold">100</div>
+                        <div className="text-5xl font-bold">{totalEmployees}</div>
                     </div>
                     <div>
                         <Button
@@ -30,15 +40,22 @@ export default function EmployeesStats() {
                 </CardHeader>
                 <CardContent className="flex justify-between items-center">
                     <div className="flex gap-2">
-                        <UserCheck2Icon size={24} />
-                        <div className="text-5xl font-bold">80</div>
+                        {employeesPresentPercentage >= 75 ? <UserCheck2Icon /> : <UserRoundXIcon />}
+                        <div className="text-5xl font-bold">{employeesPresent}</div>
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <span className="flex items-center gap-1 text-xs text-green-500">
-                        <BadgeCheckIcon size={16} />
-                        80% of employees are present
-                    </span>
+                    {employeesPresentPercentage >= 75 ? (
+                        <span className="flex items-center gap-1 text-xs text-green-500">
+                            <BadgeCheckIcon size={16} />
+                            {employeesPresentPercentage}% of employees are present
+                        </span>
+                    ) : (
+                        <span className="flex items-center gap-1 text-xs text-red-500">
+                            <AlertTriangleIcon size={16} />
+                            Only {employeesPresentPercentage}% of employees are present
+                        </span>
+                    )}
                 </CardFooter>
             </Card>
             <Card>
