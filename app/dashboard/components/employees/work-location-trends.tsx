@@ -69,7 +69,7 @@ export default function WorkLocationTrends() {
         <ResponsiveContainer
             width="100%"
             height={300}>
-            <BarChart data={data}>
+            <BarChart data={data} className="[&_.recharts-tooltip-cursor]:fill-zinc-200 dark:[&_.recharts-tooltip-cursor]:fill-zinc-800">
                 <XAxis
                     dataKey="name"
                     stroke="#888888"
@@ -79,7 +79,7 @@ export default function WorkLocationTrends() {
                     stroke="#888888"
                     fontSize={12}
                 />
-                <Tooltip />
+                <Tooltip wrapperClassName="dark:!bg-black rounded-md dark:!border-border" />
                 <Legend
                     iconType="circle"
                     formatter={value => {
