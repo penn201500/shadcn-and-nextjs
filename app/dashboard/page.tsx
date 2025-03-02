@@ -4,7 +4,7 @@ import EmployeesStats from "./components/employees/employees-stats"
 
 export default function DashboardPage() {
     return (
-        <Tabs>
+        <Tabs defaultValue="employees">
             <TabsList className="mb-4">
                 <TabsTrigger value="employees">Employees stats</TabsTrigger>
                 <TabsTrigger value="teams">Teams stats</TabsTrigger>
