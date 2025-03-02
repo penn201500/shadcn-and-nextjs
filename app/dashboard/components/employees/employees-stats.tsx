@@ -102,7 +102,7 @@ export default function EmployeesStats() {
                         Employee work location trends
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pl-0">
                     <WorkLocationTrends />
                 </CardContent>
             </Card>
