@@ -69,7 +69,9 @@ export default function WorkLocationTrends() {
         <ResponsiveContainer
             width="100%"
             height={300}>
-            <BarChart data={data} className="[&_.recharts-tooltip-cursor]:fill-zinc-200 dark:[&_.recharts-tooltip-cursor]:fill-zinc-800">
+            <BarChart
+                data={data}
+                className="[&_.recharts-tooltip-cursor]:fill-zinc-200 dark:[&_.recharts-tooltip-cursor]:fill-zinc-800">
                 <XAxis
                     dataKey="name"
                     stroke="#888888"
@@ -79,7 +81,18 @@ export default function WorkLocationTrends() {
                     stroke="#888888"
                     fontSize={12}
                 />
-                <Tooltip wrapperClassName="dark:!bg-black rounded-md dark:!border-border" />
+                <Tooltip
+                    separator=": "
+                    formatter={(value, name) => {
+                        if (name === "wfh") {
+                            return [value, "Work from home"]
+                        } else if (name === "office") {
+                            return [value, "Office"]
+                        }
+                    }}
+                    labelClassName="font-bold"
+                    wrapperClassName="text-sm dark:!bg-black rounded-md dark:!border-border"
+                />
                 <Legend
                     iconType="circle"
                     formatter={value => {
