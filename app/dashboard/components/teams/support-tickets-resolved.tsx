@@ -1,6 +1,5 @@
 "use client"
 
-import { Span } from "next/dist/trace"
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 export default function SupportTicketsResolved() {
