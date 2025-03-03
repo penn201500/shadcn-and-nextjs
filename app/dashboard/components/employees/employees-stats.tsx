@@ -92,7 +92,7 @@ export default function EmployeesStats() {
                     </CardFooter>
                 </Card>
             </div>
-            <Card>
+            <Card className="mt-4">
                 <CardHeader>
                     <CardTitle className="text-base flex items-center">
                         <Laptop
