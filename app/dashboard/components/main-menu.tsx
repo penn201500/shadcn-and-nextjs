@@ -4,10 +4,11 @@ import MenuItem from "./menu-item"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Link from "next/link"
 import LightDarkToggle from "@/components/ui/light-dark-toggle"
+import { cn } from "@/lib/utils"
 
-export default function MainMenu() {
+export default function MainMenu({ className }: { className?: string }) {
     return (
-        <nav className="bg-muted overflow-auto p-4 flex flex-col">
+        <nav className={cn("bg-muted overflow-auto p-4 flex flex-col", className)}>
             <header className="border-b dark:border-b-black border-b-zinc-300 pb-4">
                 <MenuTitle />
             </header>
@@ -43,8 +44,12 @@ export default function MainMenu() {
                 <Avatar>
                     <AvatarFallback className="bg-pink-200 dark:bg-pink-800">Sh</AvatarFallback>
                 </Avatar>
-                <Link href="/" className="hover:underline">Logout</Link>
-                <LightDarkToggle className="ml-auto"/>
+                <Link
+                    href="/"
+                    className="hover:underline">
+                    Logout
+                </Link>
+                <LightDarkToggle className="ml-auto" />
             </footer>
         </nav>
     )
