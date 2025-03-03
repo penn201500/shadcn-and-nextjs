@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const isDesktop = useMediaQuery("(min-width: 768px)")
 
     return (
-        <div className="grid md:grid-cols-[250px_1fr] h-screen">
+        <div className="md:grid md:grid-cols-[250px_1fr] h-screen">
             <MainMenu className="hidden md:flex" />
             {!isDesktop && (
                 <div className="flex justify-between md:hidden sticky top-0 left-0 bg-background border-b border-border p-4">
