@@ -9,6 +9,7 @@ import rl from "@/public/images/rl.jpg"
 import Image from "next/image"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import TeamDistributionChart from "./team-distribution-chart"
+import SupportTicketsResolved from "./support-tickets-resolved"
 
 const teamLeaders = [
     {
@@ -113,7 +114,7 @@ export default function TeamsStats() {
                             <PieChartIcon size={24} />
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex justify-between items-center">
+                    <CardContent className="flex justify-between items-center pb-0">
                         <TeamDistributionChart />
                     </CardContent>
                 </Card>
@@ -128,7 +129,9 @@ export default function TeamsStats() {
                         Support tickets resolved
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="pl-0">graph</CardContent>
+                <CardContent className="pl-0">
+                    <SupportTicketsResolved />
+                </CardContent>
             </Card>
         </>
     )
