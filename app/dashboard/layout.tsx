@@ -1,6 +1,6 @@
 "use client"
 
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import MainMenu from "./components/main-menu"
 import MenuTitle from "./components/menu-title"
 import { MenuIcon } from "lucide-react"
@@ -19,6 +19,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <DrawerTrigger>
                             <MenuIcon />
                         </DrawerTrigger>
+                        <DrawerTitle className="sr-only">Menu</DrawerTitle>
+                        {/* This is a hidden title for screen readers */}
                         <DrawerContent>
                             <MainMenu />
                         </DrawerContent>
