@@ -19,6 +19,8 @@ import {
 import { Button } from "./button"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
+import { useState } from "react"
+import { Input } from "./input"
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
@@ -36,6 +38,19 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             },
         },
     })
+
+    // Keep track of the page input (displayed 1-based)
+    const [pageInput, setPageInput] = useState(table.getState().pagination.pageIndex + 1)
+
+    const handlePageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newPage = Number(e.target.value)
+        setPageInput(newPage)
+    }
+
+    const jumpToPage = () => {
+        // React Table uses 0-based page indexing:
+        table.setPageIndex(pageInput - 1)
+    }
 
     return (
         <div className="rounded-md border">
@@ -108,6 +123,22 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                             ))}
                         </SelectContent>
                     </Select>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <p className="text-sm font-medium">To page:</p>
+                    <Input
+                        type="number"
+                        min={1}
+                        max={table.getPageCount()}
+                        value={pageInput}
+                        onChange={handlePageChange}
+                        className="w-16 h-8"
+                    />
+                    <Button
+                        onClick={jumpToPage}
+                        className="h-8 px-2">
+                        Go
+                    </Button>
                 </div>
                 <div className="flex w-[100px] items-center justify-center text-sm font-medium">
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
