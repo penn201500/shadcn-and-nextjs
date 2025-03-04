@@ -1,6 +1,7 @@
 "use client"
 
 import { Avatar } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 import { AvatarFallback } from "@radix-ui/react-avatar"
 import { ColumnDef } from "@tanstack/react-table"
 import Image from "next/image"
@@ -48,5 +49,8 @@ export const columns: ColumnDef<Employee>[] = [
     { accessorKey: "firstName", header: "First Name" },
     { accessorKey: "lastName", header: "Last Name" },
     { accessorKey: "teamName", header: "Team" },
-    { accessorKey: "isTeamLeader", header: "" },
+    { accessorKey: "isTeamLeader", header: "", cell: ({row}) => {
+        const isTeamLeader: boolean = row.getValue("isTeamLeader")
+        return isTeamLeader ? <Badge variant="success">Team Leader</Badge> : null
+    } },
 ]
