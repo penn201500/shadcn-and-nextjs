@@ -1,4 +1,4 @@
-# 项目名称
+# Shadcn UI 和 Next.js
 
 这是一个使用 Next.js 和 TypeScript 构建的 Web 应用程序。该项目使用 Tailwind CSS 和 Shadcn UI 进行样式设计，并包含各种组件和实用程序，帮助您构建现代 Web 应用程序。
 

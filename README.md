@@ -1,4 +1,4 @@
-# Project Name
+# Shadcn UI & Next.js
 
 This is a web application built with Next.js and TypeScript. The project uses Tailwind CSS and Shadcn UI for styling and includes various components and utilities to help you build a modern web application.
 
