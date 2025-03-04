@@ -87,7 +87,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                     {table.getFilteredSelectedRowModel().rows.length} of{" "}
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                 </div> */}
-            <div className="flex items-center justify-end space-x-6 lg:space-x-8">
+            <div className="flex items-center justify-end space-x-6 lg:space-x-8 pt-10">
                 <div className="flex items-center space-x-2">
                     <p className="text-sm font-medium">Rows per page</p>
                     <Select
@@ -115,7 +115,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                 <div className="flex items-center space-x-2">
                     <Button
                         variant="outline"
-                        className="hidden h-8 w-8 p-0 lg:flex"
+                        className="h-8 w-8 p-0 flex"
                         onClick={() => table.setPageIndex(0)}
                         disabled={!table.getCanPreviousPage()}>
                         <span className="sr-only">Go to first page</span>
@@ -139,7 +139,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                     </Button>
                     <Button
                         variant="outline"
-                        className="hidden h-8 w-8 p-0 lg:flex"
+                        className="h-8 w-8 p-0 flex"
                         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                         disabled={!table.getCanNextPage()}>
                         <span className="sr-only">Go to last page</span>
