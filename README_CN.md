@@ -4,6 +4,8 @@
 
 [English](README.md)
 
+测试用户名/密码: test@test.com/Test@1234
+
 ## 项目结构
 
 - **app/**: 包含主要的应用程序代码，包括页面和布局。

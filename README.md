@@ -4,6 +4,8 @@ This is a web application built with Next.js and TypeScript. The project uses Ta
 
 [中文](README_CN.md)
 
+User/Password for test: test@test.com/Test@1234
+
 ## Project Structure
 
 - **app/**: Contains the main application code, including pages and layouts.
