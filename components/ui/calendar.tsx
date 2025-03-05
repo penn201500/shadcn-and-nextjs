@@ -1,11 +1,5 @@
 "use client"
 
-declare module "react-day-picker" {
-    interface DayPickerBase {
-        captionLayout?: "dropdown-buttons" | "buttons" | "dropdown" | undefined
-    }
-}
-
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker, useDayPicker, useNavigation } from "react-day-picker"
